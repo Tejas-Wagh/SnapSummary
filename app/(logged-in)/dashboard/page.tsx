@@ -13,13 +13,14 @@ const Page = async () => {
   const user = await currentUser();
   const userId = user?.id;
 
+  if (!userId) {
+    return redirect("/sign-in");
+  }
+
   const { hasReachedLimit, uploadLimit } = await hasReachedUploadLimit(
     userId as string
   );
 
-  if (!userId) {
-    return redirect("/sign-in");
-  }
   const summaries = await getSummaries(userId);
   return (
     <main className="min-h-screen">

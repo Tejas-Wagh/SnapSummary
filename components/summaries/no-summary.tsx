@@ -2,10 +2,23 @@ import { FileText } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 import { Button } from "../ui/button";
+import { hasReachedUploadLimit } from "@/lib/user";
 
 type Props = {};
 
-const NoSummary = (props: Props) => {
+const NoSummary = async(props: Props) => {
+
+  const user = await currentUser();
+    const userId = user?.id;
+  
+    if (!userId) {
+      return redirect("/sign-in");
+    }
+  
+    const { hasReachedLimit, uploadLimit } = await hasReachedUploadLimitt(
+      userId as string
+    );
+
   return (
     <div className="text-center py-12">
       <div className="flex flex-col items-center gap-4">

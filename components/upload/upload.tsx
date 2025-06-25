@@ -1,5 +1,4 @@
 import React from 'react'
-import BgGradient from "@/components/common/bg-gradient";
 import { Badge } from "@/components/ui/badge";
 import { Sparkles } from "lucide-react";
 
